@@ -3,23 +3,30 @@ var tableData = data;
 
 // YOUR CODE HERE!
 var submit = d3.select("#filter-btn");
+var table = d3.select("#ufo-table");
+var tbody = table.select("tbody");
 
 submit.on("click", function() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
+    tbody.text("");
+
+    //d3.select("#ufo-table").select("tbody").text = "";
+    //table.text("");
     var inputElement = d3.select("#datetime");
 
     var inputValue = inputElement.property("value");
 
     console.log(inputValue);
-
+    //inputValue.node().value ="";
+    
     var filteredData = tableData.filter(event => event.datetime === inputValue);
-
+    //filteredData.text("");
     console.log(filteredData);
 
-    var table = d3.select("#ufo-table");
-    var tbody = table.select("tbody");
+
+    //
     filteredData.forEach(function(eventReport) {
         // Step 1: Loop Through `data` and console.log each weather report object
         console.log(eventReport);
