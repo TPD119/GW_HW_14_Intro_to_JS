@@ -6,6 +6,29 @@ var submit = d3.select("#filter-btn");
 var table = d3.select("#ufo-table");
 var tbody = table.select("tbody");
 
+function buildTable(data) {
+  //console.log(data);
+        
+    // Step 2:  Use d3 to append one table row `tr` for each weather report object
+    // Don't worry about adding cells or text yet, just try appending the `tr` elements.
+    
+    data.forEach(function(eventdata) {
+      var row = tbody.append("tr");
+        Object.entries(eventdata).forEach(function([key, value]) {
+          console.log(key, value);
+      
+          // Step 4: Use d3 to append 1 cell per weather report value (weekday, date, high, low)
+          // Append a cell to the row for each value 
+          // in the weather report object
+          var cell = row.append("td");
+        
+          // Step 5: Use d3 to update each cell's text with
+          // weather report values (weekday, date, high, low) 
+          cell.text(value);
+        });
+    });
+}
+
 submit.on("click", function() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
@@ -42,7 +65,7 @@ submit.on("click", function() {
           // Step 4: Use d3 to append 1 cell per weather report value (weekday, date, high, low)
           // Append a cell to the row for each value 
           // in the weather report object
-          var cell = tbody.append("td");
+          var cell = row.append("td");
          
           // Step 5: Use d3 to update each cell's text with
           // weather report values (weekday, date, high, low) 
@@ -50,3 +73,5 @@ submit.on("click", function() {
         });
     });
 });
+
+buildTable(tableData);
